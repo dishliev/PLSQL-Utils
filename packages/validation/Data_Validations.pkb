@@ -25,5 +25,17 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
     RETURN REGEXP_LIKE(p_string, '^[A-Za-z]+$');
   END Is_Alpha;
   
+  FUNCTION Is_Numeric(p_string VARCHAR2) RETURN BOOLEAN IS
+  v_num NUMBER;
+  BEGIN
+    BEGIN
+      v_num := TO_NUMBER(p_string);
+      RETURN TRUE;
+    EXCEPTION
+      WHEN VALUE_ERROR THEN
+        RETURN FALSE;
+    END;
+  END Is_Numeric;
+  
 END Data_Validations;
 /
