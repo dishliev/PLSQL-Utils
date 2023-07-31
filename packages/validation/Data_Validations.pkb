@@ -20,5 +20,10 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
   EXCEPTION WHEN OTHERS THEN RETURN FALSE;
   END Is_Date;
   
+  FUNCTION Is_Alpha(p_string VARCHAR2) RETURN BOOLEAN IS
+  BEGIN
+    RETURN REGEXP_LIKE(p_string, '^[A-Za-z]+$');
+  END Is_Alpha;
+  
 END Data_Validations;
 /
