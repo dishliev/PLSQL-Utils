@@ -13,6 +13,8 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_Country_Code(p_code VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_Currency_Code(p_code VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_UUID(p_uuid IN VARCHAR2) RETURN BOOLEAN;
 
 END Data_Validations;
 /

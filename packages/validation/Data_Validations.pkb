@@ -68,6 +68,11 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
   BEGIN
     RETURN LENGTH(p_code) = 3 AND INSTR(v_currency_codes, ',' || UPPER(p_code) || ',') > 0;
   END Is_Currency_Code;
+  
+  FUNCTION Is_UUID(p_uuid IN VARCHAR2) RETURN BOOLEAN IS
+  BEGIN
+    RETURN REGEXP_LIKE(p_uuid, '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$');
+  END;
 
 END Data_Validations;
 /
