@@ -9,6 +9,10 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_Alpha(p_string VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_Numeric(p_string VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_Country_Code(p_code VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_Currency_Code(p_code VARCHAR2) RETURN BOOLEAN;
 
 END Data_Validations;
 /
