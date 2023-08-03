@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE Data_Validations AS
 
-  FUNCTION Is_Email(email IN VARCHAR2) RETURN BOOLEAN;
+  FUNCTION Is_Email(p_email IN VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_AlphaNumeric(p_input_string IN VARCHAR2) RETURN BOOLEAN;
   
@@ -25,6 +25,8 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_FileExtension(p_file_name VARCHAR2, p_extension VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_Password_Strong(p_password VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_Valid_MIME_Type(p_string IN VARCHAR2) RETURN BOOLEAN;
 
 END Data_Validations;
 /

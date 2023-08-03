@@ -1,9 +1,9 @@
 CREATE OR REPLACE PACKAGE BODY Data_Validations AS
 
-  FUNCTION Is_Email(email IN VARCHAR2) RETURN BOOLEAN IS
+  FUNCTION Is_Email(p_email IN VARCHAR2) RETURN BOOLEAN IS
     email_pattern CONSTANT VARCHAR2(100) := '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$';
   BEGIN
-    RETURN REGEXP_LIKE(email, email_pattern);
+    RETURN REGEXP_LIKE(p_email, email_pattern);
   END;
   
   FUNCTION Is_AlphaNumeric(p_input_string IN VARCHAR2) RETURN BOOLEAN IS
@@ -134,5 +134,11 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
     RETURN (v_has_uppercase AND v_has_lowercase AND v_has_digit AND v_has_special_char);
   END Is_Password_Strong;
 
+  FUNCTION Is_Valid_MIME_Type(p_string IN VARCHAR2) RETURN BOOLEAN IS
+    v_valid_mime_types CONSTANT VARCHAR2(4000) := ',text/plain,text/html,application/pdf,image/jpeg,application/json,video/mp4,audio/mpeg,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,';
+  BEGIN
+    RETURN INSTR(v_valid_mime_types, ',' || LOWER(p_string) || ',') > 0;
+  END Is_Valid_MIME_Type;
+  
 END Data_Validations;
 /
