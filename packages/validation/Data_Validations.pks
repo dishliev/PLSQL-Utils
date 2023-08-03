@@ -23,6 +23,8 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_Hex_Color_Code(p_color_code IN VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_FileExtension(p_file_name VARCHAR2, p_extension VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_Password_Strong(p_password VARCHAR2) RETURN BOOLEAN;
 
 END Data_Validations;
 /

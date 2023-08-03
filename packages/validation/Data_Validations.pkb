@@ -105,6 +105,34 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
     v_file_ext := SUBSTR(p_file_name, INSTR(p_file_name, '.', -1) + 1);
     RETURN (UPPER(v_file_ext) = UPPER(p_extension));
   END Is_FileExtension;
+  
+  FUNCTION Is_Password_Strong(p_password VARCHAR2) RETURN BOOLEAN IS
+    v_min_length CONSTANT NUMBER := 8;
+    v_has_uppercase BOOLEAN := FALSE;
+    v_has_lowercase BOOLEAN := FALSE;
+    v_has_digit BOOLEAN := FALSE;
+    v_has_special_char BOOLEAN := FALSE;
+    v_char CHAR;
+  BEGIN
+    IF LENGTH(p_password) < v_min_length THEN
+      RETURN FALSE;
+    END IF;
+
+    FOR i IN 1..LENGTH(p_password) LOOP
+      v_char := SUBSTR(p_password, i, 1);
+      IF ASCII(v_char) BETWEEN 65 AND 90 THEN
+        v_has_uppercase := TRUE;
+      ELSIF ASCII(v_char) BETWEEN 97 AND 122 THEN
+        v_has_lowercase := TRUE;
+      ELSIF ASCII(v_char) BETWEEN 48 AND 57 THEN
+        v_has_digit := TRUE;
+      ELSE
+        v_has_special_char := TRUE;
+      END IF;
+    END LOOP;
+
+    RETURN (v_has_uppercase AND v_has_lowercase AND v_has_digit AND v_has_special_char);
+  END Is_Password_Strong;
 
 END Data_Validations;
 /
