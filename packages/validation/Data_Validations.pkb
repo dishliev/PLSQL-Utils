@@ -98,6 +98,13 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
   BEGIN
     RETURN REGEXP_LIKE(p_color_code, '^#([0-9A-Fa-f]{3}){1,2}$');
   END;
+  
+  FUNCTION Is_FileExtension(p_file_name VARCHAR2, p_extension VARCHAR2) RETURN BOOLEAN IS
+    v_file_ext VARCHAR2(100);
+  BEGIN
+    v_file_ext := SUBSTR(p_file_name, INSTR(p_file_name, '.', -1) + 1);
+    RETURN (UPPER(v_file_ext) = UPPER(p_extension));
+  END Is_FileExtension;
 
 END Data_Validations;
 /

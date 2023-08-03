@@ -21,6 +21,8 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_XML(p_xml_string IN CLOB) RETURN BOOLEAN;
   
   FUNCTION Is_Hex_Color_Code(p_color_code IN VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_FileExtension(p_file_name VARCHAR2, p_extension VARCHAR2) RETURN BOOLEAN;
 
 END Data_Validations;
 /
