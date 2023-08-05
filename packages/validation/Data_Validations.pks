@@ -29,6 +29,8 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_Valid_MIME_Type(p_string IN VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_Empty_CLOB(p_clob CLOB) RETURN BOOLEAN;
+  
+  FUNCTION Is_CLOB_Contains(p_clob CLOB, p_substring VARCHAR2) RETURN BOOLEAN;
 
 END Data_Validations;
 /
