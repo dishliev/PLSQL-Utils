@@ -158,5 +158,13 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
       RETURN FALSE;
   END Is_CLOB_Contains;
   
+  FUNCTION Is_CLOB_NotContains(p_clob CLOB, p_substring VARCHAR2) RETURN BOOLEAN IS
+  BEGIN
+    RETURN (DBMS_LOB.INSTR(p_clob, p_substring) = 0);
+  EXCEPTION
+    WHEN OTHERS THEN
+      RETURN FALSE;
+  END Is_CLOB_NotContains;
+  
 END Data_Validations;
 /
