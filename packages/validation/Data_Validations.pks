@@ -27,6 +27,8 @@ CREATE OR REPLACE PACKAGE Data_Validations AS
   FUNCTION Is_Password_Strong(p_password VARCHAR2) RETURN BOOLEAN;
   
   FUNCTION Is_Valid_MIME_Type(p_string IN VARCHAR2) RETURN BOOLEAN;
+  
+  FUNCTION Is_Empty_CLOB(p_clob CLOB) RETURN BOOLEAN;
 
 END Data_Validations;
 /

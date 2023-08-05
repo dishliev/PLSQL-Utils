@@ -140,5 +140,15 @@ CREATE OR REPLACE PACKAGE BODY Data_Validations AS
     RETURN INSTR(v_valid_mime_types, ',' || LOWER(p_string) || ',') > 0;
   END Is_Valid_MIME_Type;
   
+  FUNCTION Is_Empty_CLOB(p_clob CLOB) RETURN BOOLEAN IS
+    v_length NUMBER;
+  BEGIN
+    v_length := DBMS_LOB.GETLENGTH(p_clob);
+    RETURN (v_length = 0);
+  EXCEPTION
+    WHEN OTHERS THEN
+      RETURN FALSE;
+  END Is_Empty_CLOB;
+  
 END Data_Validations;
 /
